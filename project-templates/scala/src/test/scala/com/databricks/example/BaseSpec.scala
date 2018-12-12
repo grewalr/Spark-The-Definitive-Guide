@@ -1,7 +1,7 @@
 package com.databricks.example
 
+import org.apache.spark.sql.{SQLContext, SQLImplicits, SparkSession}
 import org.scalatest._
-import org.apache.spark.sql.{SparkSession, SQLImplicits, SQLContext}
 
 abstract class BaseSpec extends FlatSpec with BeforeAndAfterEach with Matchers {
   var spark: SparkSession = _

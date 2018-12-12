@@ -13,7 +13,7 @@ class DatasetExampleTest extends BaseSpec {
     val authorsRDD = spark
       .sparkContext
       .parallelize(authors)
-      .map(DatasetUtils.createPersonFromString(_))
+      .map(DatasetUtils.createPersonFromString)
 
     val authorsDataset = spark.createDataFrame(authorsRDD).as[Person]
 
@@ -30,7 +30,7 @@ class DatasetExampleTest extends BaseSpec {
     val authorsDataset = spark
       .sparkContext
       .parallelize(authors)
-      .map(DatasetUtils.createPersonFromString(_))
+      .map(DatasetUtils.createPersonFromString)
       .toDF()
       .as[Person]
 

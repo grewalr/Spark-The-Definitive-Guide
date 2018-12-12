@@ -1,24 +1,13 @@
 package com.databricks.example
 
-import org.apache.log4j.Logger
 import org.apache.spark.sql.SparkSession
 
-
-object DFUtils extends Serializable {
-  @transient lazy val logger = Logger.getLogger(getClass.getName)
-
-  def pointlessUDF(raw: String) = {
-    raw
-  }
-
-}
-
 object DataFrameExample extends Serializable {
-  def main(args: Array[String]) = {
 
+  def main(args: Array[String]): Unit = {
     val spark = SparkSession
       .builder()
-      .appName("Databricks Spark Example")
+      .appName("Dataframe Spark Example")
       .config("spark.sql.warehouse.dir", "/user/hive/warehouse")
       .getOrCreate()
     import spark.implicits._
@@ -32,9 +21,7 @@ object DataFrameExample extends Serializable {
       .toDF("raw")
       .selectExpr("split(raw, ',') as values")
       .selectExpr("pointlessUDF(values[0]) as name", "values[1] as company")
-      .show()
 
-
-
+    authorsDF.show()
   }
 }
